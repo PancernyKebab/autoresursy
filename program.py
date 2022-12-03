@@ -1,6 +1,9 @@
 from openpyxl import Workbook, load_workbook
 dzienniklatprodukcji={"a":2010,"b":2011,"c":2012,"d":2013,"e":2014,"f":2015,}
-licznik=0
+licznik1=0
+licznik2=0
+licznik3=0
+licznik4=0
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
@@ -17,8 +20,8 @@ while 1:
         if wybor=="wozek":
             wb=load_workbook(filename="Resurswzor.xlsx")
             ws=wb.active
-            licznik+=1
-            nazwapliku=f'Resurs{licznik}.xlsx'
+            licznik1+=1
+            nazwapliku=f'Resurs{licznik1}.xlsx'
             ekspl=input("Eksploatujący: ")
             nrewi=input("Numer ewidencyjny: ")
             produ=input("Producent: ").lower()
@@ -70,8 +73,8 @@ while 1:
         if wybor=="zuraw":
             wb=load_workbook(filename="Resurszurawiawzor.xlsx")
             ws=wb.active
-            licznik+=1
-            nazwapliku=f'Resurszurawia{licznik}.xlsx'
+            licznik2+=1
+            nazwapliku=f'Resurszurawia{licznik2}.xlsx'
             ekspl=input("Eksploatujący: ")
             nrewi=input("Numer ewidencyjny: ")
             produ=input("Producent: ").lower()
@@ -120,8 +123,8 @@ while 1:
             wb=load_workbook(filename="Resurspodestuwzor.xlsx")
             wb.iso_dates=True
             ws=wb.active
-            licznik+=1
-            nazwapliku=f'Resurspodestu{licznik}.xlsx'
+            licznik3+=1
+            nazwapliku=f'Resurspodestu{licznik3}.xlsx'
             ekspl=input("Eksploatujący: ")
             nrewi=input("Numer ewidencyjny: ")
             produ=input("Producent: ").lower()
@@ -170,8 +173,8 @@ while 1:
             wb=load_workbook(filename="Resursdzwignikawzor.xlsx")
             wb.iso_dates=True
             ws=wb.active
-            licznik+=1
-            nazwapliku=f'Resursdzwignika{licznik}.xlsx'
+            licznik4+=1
+            nazwapliku=f'Resursdzwignika{licznik4}.xlsx'
             ekspl=input("Eksploatujący: ")
             nrewi=input("Numer ewidencyjny: ")
             produ=input("Producent: ").lower()
