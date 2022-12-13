@@ -7,13 +7,14 @@ licznik4=0
 licznik5=0
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
+#zapytaj sie czy kazdy linde ma rok produkcji w numerze 7 miejscu
 #-------------------------------------------------------------------------------------------------
 while 1:
     print("wybierz typ resursu: ")
-    print("wozek, zuraw, podest, dzwignik")
+    print("wozek, zuraw, podest, dzwignik, protokol")
     wybor=input()
     while 1:
-        if wybor=="wozek" or "zuraw" or "podest" or "dzwignik":
+        if wybor=="wozek" or "zuraw" or "podest" or "dzwignik" or "protokol":
             pass
         else:
             print("Wpisz nazwe poprawnie")
@@ -28,7 +29,6 @@ while 1:
             produ=input("Producent: ").lower()
             typ=input("Typ: ")
             nrser=input("Numer seryjny: ").lower()
-            #zapytaj sie czy kazdy linde ma rok produkcji w numerze 7 miejscu
             if produ=="linde":
                 rok=dzienniklatprodukcji.get(nrser[6])
             else:
@@ -90,18 +90,6 @@ while 1:
             wartoscgran=input("Wartość graniczna (domyślnie 60000): ")
             if wartoscgran=="":
                 wartoscgran=60000
-    #        wspolczynnik=str(input("Współczynnik (domyślny 1.0): "))
-    #        wspolczynnik=wspolczynnik.replace(",",".")
-    #        wspolczynnik=float(wspolczynnik)
-    #        if wspolczynnik=="":
-    #            wspolczynnik=1.0
-    #        wartoscredu=str(input("Wartość redukująca 100 lub 125 procent: "))
-    #        wartoscredu.replace("%","")
-    #        wartoscredu=float(wartoscredu)
-    #        if wartoscredu==100:
-    #            wartoscredu=1
-    #        else:
-    #            wartoscredu=1.25
             razem=typ.upper()+" "+produ.capitalize()
             ws["d7"]=ekspl.capitalize()
             ws["d9"]=nrewi.upper()
@@ -111,9 +99,7 @@ while 1:
             ws["n11"]=udzwig
             ws["n12"]=cykle
             ws["c22"]=dnipracy
-    #        ws["i21"]=wspolczynnik
             ws["g22"]=wartoscgran
-    #        ws["l21"]=wartoscredu
             wb.save(filename=nazwapliku)
             print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
@@ -140,18 +126,6 @@ while 1:
             wartoscgran=input("Wartość graniczna (domyślnie 60000): ")
             if wartoscgran=="":
                 wartoscgran=60000
-    #        wspolczynnik=str(input("Współczynnik (domyślny 1.0): "))
-    #        wspolczynnik=wspolczynnik.replace(",",".")
-    #        wspolczynnik=float(wspolczynnik)
-    #        if wspolczynnik=="":
-    #            wspolczynnik=1.0
-    #        wartoscredu=str(input("Wartość redukująca 100 lub 125 procent: "))
-    #        wartoscredu.replace("%","")
-    #        wartoscredu=float(wartoscredu)
-    #        if wartoscredu==100:
-    #            wartoscredu=1
-    #        else:
-    #            wartoscredu=1.25
             razem=typ.upper()+" "+produ.capitalize()
             ws["d7"]=ekspl.capitalize()
             ws["d9"]=nrewi.upper()
@@ -161,9 +135,7 @@ while 1:
             ws["n11"]=udzwig
             ws["n12"]=cykle
             ws["c22"]=dnipracy
-    #        ws["i21"]=wspolczynnik
             ws["g22"]=wartoscgran
-    #        ws["l21"]=wartoscredu
             wb.save(filename=nazwapliku)
             print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
@@ -190,18 +162,6 @@ while 1:
             wartoscgran=input("Wartość graniczna (domyślnie 60000): ")
             if wartoscgran=="":
                 wartoscgran=60000
-    #        wspolczynnik=str(input("Współczynnik (domyślny 1.0): "))
-    #        wspolczynnik=wspolczynnik.replace(",",".")
-    #        wspolczynnik=float(wspolczynnik)
-    #        if wspolczynnik=="":
-    #            wspolczynnik=1.0
-    #        wartoscredu=str(input("Wartość redukująca 100 lub 125 procent: "))
-    #        wartoscredu.replace("%","")
-    #        wartoscredu=float(wartoscredu)
-    #        if wartoscredu==100:
-    #            wartoscredu=1
-    #        else:
-    #            wartoscredu=1.25
             razem=typ.upper()+" "+produ.capitalize()
             ws["d7"]=ekspl.capitalize()
             ws["d9"]=nrewi.upper()
@@ -211,57 +171,41 @@ while 1:
             ws["n11"]=udzwig
             ws["n12"]=cykle
             ws["c22"]=dnipracy
-    #        ws["i21"]=wspolczynnik
             ws["g22"]=wartoscgran
-    #        ws["l21"]=wartoscredu
             wb.save(filename=nazwapliku)
             print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
             if koniec=="zmien":
                 break
+
         if wybor=="protokol":
             wb=load_workbook(filename="Protokolwzor.xlsx")
             wb.iso_dates=True
             ws=wb.active
-            licznik4+=1
+            licznik5+=1
             nazwapliku=f'Protokol{licznik5}.xlsx'
-            numer=input("Nnumer protokołu: ")
+            numer=input("Numer protokołu: ")
             nazwafirmy=input("Nazwa firmy: ")
             typ=input("Typ: ")
-            nrser=input("Numer seryjny: ").lower()
-            stanl=int(input("Stan licznika: "))
-            udzwig=input("Udźwig: ")
-            cykle=input("Ilość cykli: ")
-            dnipracy=input("Ilość dni pracy (domyślnie 240): ")
-            if dnipracy=="":
-                dnipracy=240
-            wartoscgran=input("Wartość graniczna (domyślnie 60000): ")
-            if wartoscgran=="":
-                wartoscgran=60000
-    #        wspolczynnik=str(input("Współczynnik (domyślny 1.0): "))
-    #        wspolczynnik=wspolczynnik.replace(",",".")
-    #        wspolczynnik=float(wspolczynnik)
-    #        if wspolczynnik=="":
-    #            wspolczynnik=1.0
-    #        wartoscredu=str(input("Wartość redukująca 100 lub 125 procent: "))
-    #        wartoscredu.replace("%","")
-    #        wartoscredu=float(wartoscredu)
-    #        if wartoscredu==100:
-    #            wartoscredu=1
-    #        else:
-    #            wartoscredu=1.25
-            razem=typ.upper()+" "+produ.capitalize()
-            ws["d7"]=ekspl.capitalize()
-            ws["d9"]=nrewi.upper()
-            ws["n8"]=razem
-            ws["n9"]=nrser.upper()
-            ws["n10"]=rok
-            ws["n11"]=udzwig
-            ws["n12"]=cykle
-            ws["c22"]=dnipracy
-    #        ws["i21"]=wspolczynnik
-            ws["g22"]=wartoscgran
-    #        ws["l21"]=wartoscredu
+            nrfabr=input("Numer fabryczny: ").lower()
+            stanl=input("Stan licznika: ")
+            opis=input("Opis wykonywanych czynności: ")
+            #czesci=input("")
+            uwagi=input("Uwagi i zalecenia: ")
+            wyko=input("Wykonał: ")
+            czas=input("Czas pracy: ")
+            dojazd=input("Dojazd: ")
+            ws["c1"]=numer
+            ws["b4"]=nazwafirmy.capitalize()
+            ws["g4"]=typ.upper()
+            ws["g6"]=nrfabr.upper()
+            ws["g8"]=stanl
+            ws["a12"]=opis
+            #tu beda czesci
+            ws["a36"]=uwagi
+            ws["a42"]=wyko
+            ws["d42"]=czas
+            ws["d45"]=dojazd
             wb.save(filename=nazwapliku)
             print("Jeżeli chcesz zrobić kolejny protokół wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
