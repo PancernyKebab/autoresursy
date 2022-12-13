@@ -7,9 +7,14 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
+
+excel = client.Dispatch("Excel.Application")
+#C:\Users\tytus\Desktop\autoresursy\Resurswzor.xlsx
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
+print("Czy dokument ma być PDF czy .xlsx")
+wybor1=input()
 while 1:
     print("wybierz typ dokumentu: ")
     print("wozek, zuraw, podest, dzwignik, protokol")
@@ -72,6 +77,12 @@ while 1:
             ws["c21"]=wartoscgran
             ws["l21"]=wartoscredu
             wb.save(filename=nazwapliku)
+
+            sheets = excel.Workbooks.Open('C:\Users\tytus\Desktop\autoresursy\Resurswzor.xlsx')
+            work_sheets = sheets.Worksheets[0]
+
+            work_sheets.ExportAsFixedFormat(0, 'C:\Users\tytus\Desktop\autoresursy')
+
             print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
             if koniec=="zmien":
