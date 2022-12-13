@@ -5,9 +5,9 @@ licznik2=0
 licznik3=0
 licznik4=0
 licznik5=0
+p=11
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
-#zapytaj sie czy kazdy linde ma rok produkcji w numerze 7 miejscu
 #-------------------------------------------------------------------------------------------------
 while 1:
     print("wybierz typ resursu: ")
@@ -190,7 +190,13 @@ while 1:
             nrfabr=input("Numer fabryczny: ").lower()
             stanl=input("Stan licznika: ")
             opis=input("Opis wykonywanych czynności: ")
-            #czesci=input("")
+            print("Wpisz nazwy i ilość części użytych, pozostaw puste jeżeli chcesz przejść dalej")
+            while 1:
+                p+=1
+                czesc=input()
+                if czesc=="" or p==35:
+                    break
+                ws[f'f{p}']=czesc
             uwagi=input("Uwagi i zalecenia: ")
             wyko=input("Wykonał: ")
             czas=input("Czas pracy: ")
@@ -201,7 +207,6 @@ while 1:
             ws["g6"]=nrfabr.upper()
             ws["g8"]=stanl
             ws["a12"]=opis
-            #tu beda czesci
             ws["a36"]=uwagi
             ws["a42"]=wyko
             ws["d42"]=czas
