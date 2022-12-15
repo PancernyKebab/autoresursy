@@ -7,6 +7,8 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
+# zrob zamiane na apk moze
+#wartosci maja domyslnie miec 100 
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
@@ -27,13 +29,12 @@ while 1:
             nrser=input("Numer seryjny: ").lower()
             if produ=="linde":
                 rok=dzienniklatprodukcji.get(nrser[6])
-                print(type(rok))
                 if rok=="NoneType":
                     rok=input("Rok produkcji: ")
                 else:
-                    print(f'Czy to jest poprawny rok produkcji? {rok}')
-                    tak=input()
-                    if tak=="tak":
+                    print(f'Czy to jest poprawny rok produkcji? {rok} (wciśnij enter jeżeli jest poprawny')
+                    tak=input().lower()
+                    if tak=="":
                         pass
                     else:
                         rok=input("Rok produkcji: ")
