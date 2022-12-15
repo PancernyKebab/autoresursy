@@ -219,5 +219,3 @@ while 1:
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
             if koniec=="zmien":
                 break
-        print("Wpisz nazwe poprawnie.")
-        break
