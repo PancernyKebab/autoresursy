@@ -1,5 +1,4 @@
 from openpyxl import Workbook, load_workbook
-from win32com import client
 dzienniklatprodukcji={"l":2000,"m":2001,"n":2002,"p":2003,"r":2004,"s":2005,"t":2006,"u":2007,"w":2008,"z":2009,"a":2010,"b":2011,"c":2012,"d":2013,"e":2014,"f":2015,"g":2016,"h":2017,"j":2018,"v":2019,"x":2020,"y":2021,"k":2022}
 licznik1=0
 licznik2=0
@@ -8,7 +7,6 @@ licznik4=0
 licznik5=0
 p=11
 #zrob zamiane na apk moze
-#wartosci maja domyslnie miec 100 
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
@@ -16,6 +14,7 @@ while 1:
     print("wybierz typ dokumentu: ")
     print("wozek, zuraw, podest, dzwignik, protokol")
     wybor=input().lower()
+
     while 1:
         if wybor=="wozek":
             wb=load_workbook(filename="Resurswzor.xlsx")
@@ -55,15 +54,12 @@ while 1:
             else:
                 wspolczynnik=float(wspolczynnik)
             wartoscredu=str(input("Wartość redukująca (domyślnie 100%)"))
-            print(f'po inpucie: {wartoscredu}')
             if wartoscredu=="":
                 wartoscredu.replace("%","")
                 wartoscredu=1
             else:
-                print(f'po elsie: {wartoscredu}')
                 wartoscredu.replace("%","")
-                wartoscredu=f'{wartoscredu[0]},{wartoscredu[-2]}{wartoscredu[-1]}'
-                print(f'po: {wartoscredu}')
+                wartoscredu=f'{wartoscredu[0]}.{wartoscredu[-2]}{wartoscredu[-1]}'
             razem=typ.upper()+" "+produ.capitalize()
             ws["d7"]=ekspl.capitalize()
             ws["d9"]=nrewi.upper()
@@ -223,3 +219,6 @@ while 1:
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
             if koniec=="zmien":
                 break
+        else:
+            print("wpisz poprawnie")
+            break
