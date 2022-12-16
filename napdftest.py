@@ -78,10 +78,7 @@ while 1:
             ws["l21"]=wartoscredu
             wb.save(filename=nazwapliku)
 
-            sheets = excel.Workbooks.Open('C:\Users\tytus\Desktop\autoresursy\Resurswzor.xlsx')
-            work_sheets = sheets.Worksheets[0]
 
-            work_sheets.ExportAsFixedFormat(0, 'C:\Users\tytus\Desktop\autoresursy')
 
             print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")

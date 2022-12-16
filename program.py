@@ -7,7 +7,7 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
-# zrob zamiane na apk moze
+#zrob zamiane na apk moze
 #wartosci maja domyslnie miec 100 
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
@@ -32,7 +32,7 @@ while 1:
                 if rok=="NoneType":
                     rok=input("Rok produkcji: ")
                 else:
-                    print(f'Czy to jest poprawny rok produkcji? {rok} (wciśnij enter jeżeli jest poprawny')
+                    print(f'Czy to jest poprawny rok produkcji? {rok} (wciśnij enter jeżeli jest poprawny)')
                     tak=input().lower()
                     if tak=="":
                         pass
@@ -54,13 +54,16 @@ while 1:
                 wspolczynnik=1.0
             else:
                 wspolczynnik=float(wspolczynnik)
-            wartoscredu=str(input("Wartość redukująca 100 lub 125 procent: "))
-            wartoscredu.replace("%","")
-            wartoscredu=float(wartoscredu)
-            if wartoscredu==100:
+            wartoscredu=str(input("Wartość redukująca (domyślnie 100%)"))
+            print(f'po inpucie: {wartoscredu}')
+            if wartoscredu=="":
+                wartoscredu.replace("%","")
                 wartoscredu=1
             else:
-                wartoscredu=1.25
+                print(f'po elsie: {wartoscredu}')
+                wartoscredu.replace("%","")
+                wartoscredu=f'{wartoscredu[0]},{wartoscredu[-2]}{wartoscredu[-1]}'
+                print(f'po: {wartoscredu}')
             razem=typ.upper()+" "+produ.capitalize()
             ws["d7"]=ekspl.capitalize()
             ws["d9"]=nrewi.upper()
