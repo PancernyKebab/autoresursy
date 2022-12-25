@@ -1,5 +1,9 @@
 from openpyxl import Workbook, load_workbook
 import os
+from win32com import client
+sciezka=os.getcwd()
+sciezkawynik=os.getcwd()
+sciezkawynik+="/wyniki"
 dzienniklatprodukcji={"l":2000,"m":2001,"n":2002,"p":2003,"r":2004,"s":2005,"t":2006,"u":2007,"w":2008,"z":2009,"a":2010,"b":2011,"c":2012,"d":2013,"e":2014,"f":2015,"g":2016,"h":2017,"j":2018,"v":2019,"x":2020,"y":2021,"k":2022}
 licznik1=0
 licznik2=0
@@ -7,7 +11,7 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
-sciezka=os.getcwd()
+a=os.getcwd()
 #zrob zamiane na apk moze
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
@@ -23,6 +27,7 @@ while 1:
             ws=wb.active
             licznik1+=1
             nazwapliku=f'Resurs{licznik1}.xlsx'
+            nazwadopdf=f'Resurs{licznik1}'
             ekspl=input("Eksploatujący: ")
             nrewi=input("Numer ewidencyjny: ")
             produ=input("Producent: ").lower()
@@ -74,6 +79,14 @@ while 1:
             ws["c21"]=wartoscgran
             ws["l21"]=wartoscredu
             wb.save(filename=nazwapliku)
+            excel = client.Dispatch("Excel.Application")
+            excel.Visible = False
+            excel.DisplayAlerts = False
+            sheets = excel.Workbooks.Open(f'{sciezka}\{nazwadopdf}')
+            work_sheets = sheets.Worksheets[0]
+            work_sheets.ExportAsFixedFormat(0, f'{sciezkawynik}\{nazwadopdf}')
+            excel.quit()
+            os.remove(f'{sciezka}\{nazwapliku}')
             print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
             koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
             if koniec=="zmien":
