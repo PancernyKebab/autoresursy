@@ -1,6 +1,11 @@
 import os
 from openpyxl import Workbook, load_workbook
+import os
 from win32com import client
+import time
+sciezka=os.getcwd()
+sciezkawynik=os.getcwd()
+sciezkawynik+="/wyniki"
 dzienniklatprodukcji={"l":2000,"m":2001,"n":2002,"p":2003,"r":2004,"s":2005,"t":2006,"u":2007,"w":2008,"z":2009,"a":2010,"b":2011,"c":2012,"d":2013,"e":2014,"f":2015,"g":2016,"h":2017,"j":2018,"v":2019,"x":2020,"y":2021,"k":2022}
 licznik1=0
 licznik2=0
@@ -8,38 +13,32 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
-g=os.getcwd()
-
-
-app = client.Dispatch("Excel.Application")
-app.Interactive=False
-app.Visible=False
-
-
-"""
-workbook=app.Workbooks.Open(g+"\Resurs1")
-workbook.ActiveSheet.ExportAsFixedFormat(0,g+"\Resurs1")
-workbook.Close()"""
-
-
-
+a=os.getcwd()
 #zrob zamiane na apk moze
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
+# jest zamiana na pdf w wózku ale nie dziala usuniecie xlsx nie wiadomo dlaczego
 #-------------------------------------------------------------------------------------------------
-czyzamienic=input("Czy dokument ma byc w formacie PDF czy xlsx").lower()
-if czyzamienic!="pdf":
+cos=True
+while cos:
+    f=input("Dokumenty mają mieć format pdf czy xlsx").lower()
+    if f=="pdf" or f=="xlsx":
+        cos=False
+    else:
+        print("wpisz poprawnie")
+
+if f=="pdf":
     while 1:
         print("wybierz typ dokumentu: ")
         print("wozek, zuraw, podest, dzwignik, protokol")
         wybor=input().lower()
-
         while 1:
             if wybor=="wozek":
                 wb=load_workbook(filename="Resurswzor.xlsx")
                 ws=wb.active
                 licznik1+=1
                 nazwapliku=f'Resurs{licznik1}.xlsx'
+                nazwadopdf=f'Resurs{licznik1}'
                 ekspl=input("Eksploatujący: ")
                 nrewi=input("Numer ewidencyjny: ")
                 produ=input("Producent: ").lower()
@@ -68,17 +67,23 @@ if czyzamienic!="pdf":
                     wartoscgran=40000
                 wspolczynnik=str(input("Współczynnik (domyślny 1.0): "))
                 wspolczynnik=wspolczynnik.replace(",",".")
-                if wspolczynnik=="":
-                    wspolczynnik=1.0
-                else:
-                    wspolczynnik=float(wspolczynnik)
+                try:
+                    if wspolczynnik=="":
+                        wspolczynnik=1.0
+                    else:
+                        wspolczynnik=float(wspolczynnik)
+                except ValueError:
+                    print("Została wpisana zła wartość współczynnika")
                 wartoscredu=str(input("Wartość redukująca (domyślnie 100%)"))
-                if wartoscredu=="":
-                    wartoscredu.replace("%","")
-                    wartoscredu=1
-                else:
-                    wartoscredu.replace("%","")
-                    wartoscredu=f'{wartoscredu[0]}.{wartoscredu[-2]}{wartoscredu[-1]}'
+                try:
+                    if wartoscredu=="":
+                        wartoscredu.replace("%","")
+                        wartoscredu=1
+                    else:
+                        wartoscredu.replace("%","")
+                        wartoscredu=f'{wartoscredu[0]}.{wartoscredu[-2]}{wartoscredu[-1]}'
+                except IndexError:
+                    print("Została wpisana zła wartość redukująca")
                 razem=typ.upper()+" "+produ.capitalize()
                 ws["d7"]=ekspl.capitalize()
                 ws["d9"]=nrewi.upper()
@@ -91,6 +96,18 @@ if czyzamienic!="pdf":
                 ws["c21"]=wartoscgran
                 ws["l21"]=wartoscredu
                 wb.save(filename=nazwapliku)
+                excel = client.Dispatch("Excel.Application")
+                excel.Visible = False
+                excel.DisplayAlerts = False
+                sheets = excel.Workbooks.Open(f'{sciezka}\{nazwadopdf}')
+                work_sheets = sheets.Worksheets[0]
+                work_sheets.ExportAsFixedFormat(0, f'{sciezkawynik}\{nazwadopdf}')
+                excel.quit()
+                time.sleep(0.01)
+                try:
+                    os.remove(f'{sciezka}\{nazwapliku}')
+                except PermissionError:
+                    print("cos sie zepsulo")
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
@@ -304,9 +321,6 @@ else:
                 ws["c21"]=wartoscgran
                 ws["l21"]=wartoscredu
                 wb.save(filename=nazwapliku)
-                workbook=app.Workbooks.Open(g+nazwapliku)
-                workbook.ActiveSheet.ExportAsFixedFormat(0,g+nazwapliku)
-                workbook.Close()
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
