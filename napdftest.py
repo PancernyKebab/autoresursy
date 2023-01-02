@@ -1,6 +1,5 @@
 import os
 from openpyxl import Workbook, load_workbook
-import os
 from win32com import client
 import time
 sciezka=os.getcwd()
@@ -13,7 +12,6 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
-a=os.getcwd()
 #zrob zamiane na apk moze
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
