@@ -2,6 +2,7 @@ import os
 from openpyxl import Workbook, load_workbook
 from win32com import client
 import time
+#----------------------------------------------------
 testowy="plikxlsxdousuniecia.xlsx"
 testowybezrozsz="plikxlsxdousuniecia"
 sciezka=os.getcwd()
@@ -17,7 +18,6 @@ p=11
 #zrob zamiane na apk moze
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
-#na pdf dziala zajebiscie teraz tylko zaktualizowac xlsx
 #-------------------------------------------------------------------------------------------------
 cos=True
 try:
