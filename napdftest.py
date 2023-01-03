@@ -2,10 +2,12 @@ import os
 from openpyxl import Workbook, load_workbook
 from win32com import client
 import time
+testowy="plikxlsxdousuniecia.xlsx"
+testowybezrozsz="plikxlsxdousuniecia"
 sciezka=os.getcwd()
-sciezkawynik=os.getcwd()
-sciezkawynik+="/wyniki"
+sciezkanapulpit = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
 dzienniklatprodukcji={"l":2000,"m":2001,"n":2002,"p":2003,"r":2004,"s":2005,"t":2006,"u":2007,"w":2008,"z":2009,"a":2010,"b":2011,"c":2012,"d":2013,"e":2014,"f":2015,"g":2016,"h":2017,"j":2018,"v":2019,"x":2020,"y":2021,"k":2022}
+sc=os.path.join(sciezkanapulpit+"\wynikiprogramu")
 licznik1=0
 licznik2=0
 licznik3=0
@@ -15,9 +17,13 @@ p=11
 #zrob zamiane na apk moze
 #zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
-# jest zamiana na pdf w wózku ale nie dziala usuniecie xlsx nie wiadomo dlaczego
+#na pdf dziala zajebiscie teraz tylko zaktualizowac xlsx
 #-------------------------------------------------------------------------------------------------
 cos=True
+try:
+    os.mkdir(sc)
+except FileExistsError:
+    pass
 while cos:
     f=input("Dokumenty mają mieć format pdf czy xlsx").lower()
     if f=="pdf" or f=="xlsx":
@@ -32,7 +38,7 @@ if f=="pdf":
         wybor=input().lower()
         while 1:
             if wybor=="wozek":
-                wb=load_workbook(filename="Resurswzor.xlsx")
+                wb=load_workbook(os.path.join(sciezka+"\Resurswzor.xlsx"))
                 ws=wb.active
                 licznik1+=1
                 nazwapliku=f'Resurs{licznik1}.xlsx'
@@ -49,7 +55,7 @@ if f=="pdf":
                     else:
                         print(f'Czy to jest poprawny rok produkcji? {rok} (wciśnij enter jeżeli jest poprawny)')
                         tak=input().lower()
-                        if tak=="":
+                        if tak=="" or tak=="tak":
                             pass
                         else:
                             rok=input("Rok produkcji: ")
@@ -93,17 +99,18 @@ if f=="pdf":
                 ws["i21"]=wspolczynnik
                 ws["c21"]=wartoscgran
                 ws["l21"]=wartoscredu
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(f'{sc}\{testowy}'))
                 excel = client.Dispatch("Excel.Application")
                 excel.Visible = False
                 excel.DisplayAlerts = False
-                sheets = excel.Workbooks.Open(f'{sciezka}\{nazwadopdf}')
+                sheets = excel.Workbooks.Open(f'{sc}\{testowybezrozsz}')
                 work_sheets = sheets.Worksheets[0]
-                work_sheets.ExportAsFixedFormat(0, f'{sciezkawynik}\{nazwadopdf}')
+                work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
                 time.sleep(0.01)
                 try:
-                    os.remove(f'{sciezka}\{nazwapliku}')
+                    #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
+                    os.remove(os.path.join(f'{sc}\{testowy}'))
                 except PermissionError:
                     print("cos sie zepsulo")
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
@@ -112,10 +119,11 @@ if f=="pdf":
                     break
 
             elif wybor=="zuraw":
-                wb=load_workbook(filename="Resurszurawiawzor.xlsx")
+                wb=load_workbook(os.path.join(sciezka+"\Resurszurawiawzor.xlsx"))
                 ws=wb.active
                 licznik2+=1
                 nazwapliku=f'Resurszurawia{licznik2}.xlsx'
+                nazwadopdf=f'Resurszurawia{licznik2}'
                 ekspl=input("Eksploatujący: ")
                 nrewi=input("Numer ewidencyjny: ")
                 produ=input("Producent: ").lower()
@@ -140,17 +148,31 @@ if f=="pdf":
                 ws["n12"]=cykle
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(f'{sc}\{testowy}'))
+                excel = client.Dispatch("Excel.Application")
+                excel.Visible = False
+                excel.DisplayAlerts = False
+                sheets = excel.Workbooks.Open(f'{sc}\{testowybezrozsz}')
+                work_sheets = sheets.Worksheets[0]
+                work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
+                excel.quit()
+                time.sleep(0.01)
+                try:
+                    #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
+                    os.remove(os.path.join(f'{sc}\{testowy}'))
+                except PermissionError:
+                    print("cos sie zepsulo")
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
                     break
 
             elif wybor=="podest":
-                wb=load_workbook(filename="Resurspodestuwzor.xlsx")
+                wb=load_workbook(os.path.join(sciezka+"\Resurspodestuwzor.xlsx"))
                 ws=wb.active
                 licznik3+=1
                 nazwapliku=f'Resurspodestu{licznik3}.xlsx'
+                nazwadopdf=f'Resurspodestu{licznik3}'
                 ekspl=input("Eksploatujący: ")
                 nrewi=input("Numer ewidencyjny: ")
                 produ=input("Producent: ").lower()
@@ -175,17 +197,31 @@ if f=="pdf":
                 ws["n12"]=cykle
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(f'{sc}\{testowy}'))
+                excel = client.Dispatch("Excel.Application")
+                excel.Visible = False
+                excel.DisplayAlerts = False
+                sheets = excel.Workbooks.Open(f'{sc}\{testowybezrozsz}')
+                work_sheets = sheets.Worksheets[0]
+                work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
+                excel.quit()
+                time.sleep(0.01)
+                try:
+                    #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
+                    os.remove(os.path.join(f'{sc}\{testowy}'))
+                except PermissionError:
+                    print("cos sie zepsulo")
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
                     break
 
             elif wybor=="dzwignik":
-                wb=load_workbook(filename="Resursdzwignikawzor.xlsx")
+                wb=load_workbook(os.path.join(sciezka+"\Resursdzwignikawzor.xlsx"))
                 ws=wb.active
                 licznik4+=1
                 nazwapliku=f'Resursdzwignika{licznik4}.xlsx'
+                nazwadopdf=f'Resursdzwignika{licznik4}'
                 ekspl=input("Eksploatujący: ")
                 nrewi=input("Numer ewidencyjny: ")
                 produ=input("Producent: ").lower()
@@ -210,17 +246,31 @@ if f=="pdf":
                 ws["n12"]=cykle
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(f'{sc}\{testowy}'))
+                excel = client.Dispatch("Excel.Application")
+                excel.Visible = False
+                excel.DisplayAlerts = False
+                sheets = excel.Workbooks.Open(f'{sc}\{testowybezrozsz}')
+                work_sheets = sheets.Worksheets[0]
+                work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
+                excel.quit()
+                time.sleep(0.01)
+                try:
+                    #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
+                    os.remove(os.path.join(f'{sc}\{testowy}'))
+                except PermissionError:
+                    print("cos sie zepsulo")
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
                     break
 
             elif wybor=="protokol":
-                wb=load_workbook(filename="Protokolwzor.xlsx")
+                wb=load_workbook(os.path.join(sciezka+"\Protokolwzor.xlsx"))
                 ws=wb.active
                 licznik5+=1
                 nazwapliku=f'Protokol{licznik5}.xlsx'
+                nazwadopdf=f'Protokol{licznik5}'
                 numer=input("Numer protokołu: ")
                 nazwafirmy=input("Nazwa firmy: ")
                 typ=input("Typ: ")
@@ -248,7 +298,20 @@ if f=="pdf":
                 ws["a42"]=wyko
                 ws["d42"]=czas
                 ws["d45"]=dojazd
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(f'{sc}\{testowy}'))
+                excel = client.Dispatch("Excel.Application")
+                excel.Visible = False
+                excel.DisplayAlerts = False
+                sheets = excel.Workbooks.Open(f'{sc}\{testowybezrozsz}')
+                work_sheets = sheets.Worksheets[0]
+                work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
+                excel.quit()
+                time.sleep(0.01)
+                try:
+                    #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
+                    os.remove(os.path.join(f'{sc}\{testowy}'))
+                except PermissionError:
+                    print("cos sie zepsulo")
                 print("Jeżeli chcesz zrobić kolejny protokół wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
@@ -318,7 +381,7 @@ else:
                 ws["i21"]=wspolczynnik
                 ws["c21"]=wartoscgran
                 ws["l21"]=wartoscredu
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(sc+"\\"+nazwapliku))
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
@@ -353,7 +416,7 @@ else:
                 ws["n12"]=cykle
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(sc+"\\"+nazwapliku))
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
@@ -388,7 +451,7 @@ else:
                 ws["n12"]=cykle
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(sc+"\\"+nazwapliku))
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
@@ -423,7 +486,7 @@ else:
                 ws["n12"]=cykle
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(sc+"\\"+nazwapliku))
                 print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
@@ -461,7 +524,7 @@ else:
                 ws["a42"]=wyko
                 ws["d42"]=czas
                 ws["d45"]=dojazd
-                wb.save(filename=nazwapliku)
+                wb.save(os.path.join(sc+"\\"+nazwapliku))
                 print("Jeżeli chcesz zrobić kolejny protokół wcisnij enter")
                 koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
                 if koniec=="zmien":
