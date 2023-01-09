@@ -15,8 +15,28 @@ licznik3=0
 licznik4=0
 licznik5=0
 p=11
+czyprzerwac=0
+
+"""                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
+                    break
+                elif czyprzerwac==2:
+                    pass"""
+#pdf i excel dziala dziala zamiana dokumentow teraz tylko wymyslic jak nie trzymac wzorow na komputerze tylko jakos 
+#online czy w chmurze nwm
 #zrob zamiane na apk moze
-#zrob wybor normalnego pliku a zamiane w pdf
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
 cos=True
@@ -25,7 +45,7 @@ try:
 except FileExistsError:
     pass
 while cos:
-    f=input("Dokumenty mają mieć format pdf czy xlsx").lower()
+    f=input("Dokumenty mają mieć format pdf czy xlsx: ").lower()
     if f=="pdf" or f=="xlsx":
         cos=False
     else:
@@ -107,16 +127,29 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.01)
+                time.sleep(0.1)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
                 except PermissionError:
                     print("cos sie zepsulo")
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="zuraw":
                 wb=load_workbook(os.path.join(sciezka+"\Resurszurawiawzor.xlsx"))
@@ -156,16 +189,29 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.01)
+                time.sleep(0.1)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
                 except PermissionError:
                     print("cos sie zepsulo")
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="podest":
                 wb=load_workbook(os.path.join(sciezka+"\Resurspodestuwzor.xlsx"))
@@ -205,16 +251,29 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.01)
+                time.sleep(0.1)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
                 except PermissionError:
                     print("cos sie zepsulo")
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="dzwignik":
                 wb=load_workbook(os.path.join(sciezka+"\Resursdzwignikawzor.xlsx"))
@@ -254,16 +313,29 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.01)
+                time.sleep(0.1)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
                 except PermissionError:
                     print("cos sie zepsulo")
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="protokol":
                 wb=load_workbook(os.path.join(sciezka+"\Protokolwzor.xlsx"))
@@ -306,16 +378,29 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.01)
+                time.sleep(0.1)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
                 except PermissionError:
                     print("cos sie zepsulo")
-                print("Jeżeli chcesz zrobić kolejny protokół wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
             else:
                 print("wpisz poprawnie")
                 break
@@ -359,17 +444,23 @@ else:
                     wartoscgran=40000
                 wspolczynnik=str(input("Współczynnik (domyślny 1.0): "))
                 wspolczynnik=wspolczynnik.replace(",",".")
-                if wspolczynnik=="":
-                    wspolczynnik=1.0
-                else:
-                    wspolczynnik=float(wspolczynnik)
+                try:
+                    if wspolczynnik=="":
+                        wspolczynnik=1.0
+                    else:
+                        wspolczynnik=float(wspolczynnik)
+                except ValueError:
+                    print("została wpisana zla wartosc współczynnika")
                 wartoscredu=str(input("Wartość redukująca (domyślnie 100%)"))
-                if wartoscredu=="":
-                    wartoscredu.replace("%","")
-                    wartoscredu=1
-                else:
-                    wartoscredu.replace("%","")
-                    wartoscredu=f'{wartoscredu[0]}.{wartoscredu[-2]}{wartoscredu[-1]}'
+                try:
+                    if wartoscredu=="":
+                        wartoscredu.replace("%","")
+                        wartoscredu=1
+                    else:
+                        wartoscredu.replace("%","")
+                        wartoscredu=f'{wartoscredu[0]}.{wartoscredu[-2]}{wartoscredu[-1]}'
+                except IndexError:
+                    print("Została wpisaba zła wartość redukująca")
                 razem=typ.upper()+" "+produ.capitalize()
                 ws["d7"]=ekspl.capitalize()
                 ws["d9"]=nrewi.upper()
@@ -382,10 +473,23 @@ else:
                 ws["c21"]=wartoscgran
                 ws["l21"]=wartoscredu
                 wb.save(os.path.join(sc+"\\"+nazwapliku))
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="zuraw":
                 wb=load_workbook(filename="Resurszurawiawzor.xlsx")
@@ -417,10 +521,23 @@ else:
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
                 wb.save(os.path.join(sc+"\\"+nazwapliku))
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="podest":
                 wb=load_workbook(filename="Resurspodestuwzor.xlsx")
@@ -452,10 +569,23 @@ else:
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
                 wb.save(os.path.join(sc+"\\"+nazwapliku))
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
 
             elif wybor=="dzwignik":
                 wb=load_workbook(filename="Resursdzwignikawzor.xlsx")
@@ -487,11 +617,23 @@ else:
                 ws["c22"]=dnipracy
                 ws["g22"]=wartoscgran
                 wb.save(os.path.join(sc+"\\"+nazwapliku))
-                print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
-
+                elif czyprzerwac==2:
+                    pass
             elif wybor=="protokol":
                 wb=load_workbook(filename="Protokolwzor.xlsx")
                 ws=wb.active
@@ -525,10 +667,23 @@ else:
                 ws["d42"]=czas
                 ws["d45"]=dojazd
                 wb.save(os.path.join(sc+"\\"+nazwapliku))
-                print("Jeżeli chcesz zrobić kolejny protokół wcisnij enter")
-                koniec=input("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                if koniec=="zmien":
+                while 1:
+                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
+                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
+                    koniec=input()
+                    if koniec=="zmien":
+                        czyprzerwac=1
+                        break
+                    elif koniec=="":
+                        czyprzerwac=2
+                        break
+                    else:
+                        czyprzerwac=0
+                        pass
+                if czyprzerwac==1:
                     break
+                elif czyprzerwac==2:
+                    pass
             else:
                 print("wpisz poprawnie")
                 break
