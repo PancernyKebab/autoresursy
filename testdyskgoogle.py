@@ -1,12 +1,15 @@
 import os
-from openpyxl import Workbook, load_workbook
+from openpyxl import load_workbook
 from win32com import client
 import time
-import requests
+import json 
+from costam import gdrive, pliki
 #----------------------------------------------------
 testowy="plikxlsxdousuniecia.xlsx"
 testowybezrozsz="plikxlsxdousuniecia"
 sciezka=os.getcwd()
+sciezkadokumentyuzytkownika=os.path.join(os.path.expanduser('~'),'Documents',"Autoresursy")
+paths={"protokol":"Protokolwzor.xlsx","dzwignik":"Resursdzwignikawzor.xlsx","podest":"Resurspodestuwzor.xlsx","resurs":"Resurswzor.xlsx","zuraw":"Resurszurawiawzor.xlsx"}
 sciezkanapulpit = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
 dzienniklatprodukcji={"l":2000,"m":2001,"n":2002,"p":2003,"r":2004,"s":2005,"t":2006,"u":2007,"w":2008,"z":2009,"a":2010,"b":2011,"c":2012,"d":2013,"e":2014,"f":2015,"g":2016,"h":2017,"j":2018,"v":2019,"x":2020,"y":2021,"k":2022}
 sc=os.path.join(sciezkanapulpit+"\wynikiprogramu")
@@ -17,36 +20,41 @@ licznik4=0
 licznik5=0
 p=11
 czyprzerwac=0
+SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+def czyinstnieje(a,b="folder istnieje"):  
+    try:
+        os.mkdir(a)
+        return True
+    except FileExistsError:
+        return False
+czyinstnieje(sc)
+czyinstnieje(sciezkadokumentyuzytkownika)
+service=gdrive(SCOPES)
 
-url="https://raw.github.com/PancernyKebab/autoresursy/Resurswzor.xlsx"
-
-"""                while 1:
-                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                    koniec=input()
-                    if koniec=="zmien":
-                        czyprzerwac=1
-                        break
-                    elif koniec=="":
-                        czyprzerwac=2
-                        break
-                    else:
-                        czyprzerwac=0
-                        pass
-                if czyprzerwac==1:
-                    break
-                elif czyprzerwac==2:
-                    pass"""
 #pdf i excel dziala dziala zamiana dokumentow teraz tylko wymyslic jak nie trzymac wzorow na komputerze tylko jakos 
 #online czy w chmurze nwm
 #zrob zamiane na apk moze
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
+print(sciezkadokumentyuzytkownika)
+jsonPath=os.path.join(sciezkadokumentyuzytkownika,"paths.json")
+id={}
+if not os.path.isfile(jsonPath):
+    serviceFiles=pliki(service)
+    with open(jsonPath,'w') as f:
+        id=serviceFiles
+        f.write(json.dumps(serviceFiles))
+        f.close()
+else:
+    with(open(jsonPath,"r")) as f:
+        id=json.loads(f.read())
+        f.close()
+for plik in paths.values:
+    if not os.path.isfile(os.path.join(sciezkadokumentyuzytkownika,plik)):
+        
+        
+
 cos=True
-try:
-    os.mkdir(sc)
-except FileExistsError:
-    pass
 while cos:
     f=input("Dokumenty mają mieć format pdf czy xlsx: ").lower()
     if f=="pdf" or f=="xlsx":
