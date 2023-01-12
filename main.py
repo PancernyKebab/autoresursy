@@ -2,6 +2,7 @@ import os
 from openpyxl import Workbook, load_workbook
 from win32com import client
 import time
+import requests
 #----------------------------------------------------
 testowy="plikxlsxdousuniecia.xlsx"
 testowybezrozsz="plikxlsxdousuniecia"
@@ -16,6 +17,8 @@ licznik4=0
 licznik5=0
 p=11
 czyprzerwac=0
+
+url="https://raw.github.com/PancernyKebab/autoresursy/Resurswzor.xlsx"
 
 """                while 1:
                     print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
