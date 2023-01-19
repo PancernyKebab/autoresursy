@@ -16,35 +16,19 @@ licznik4=0
 licznik5=0
 p=11
 czyprzerwac=0
-
-
-"""                while 1:
-                    print("Jeżeli chcesz zrobić kolejny resurs wcisnij enter")
-                    print("Jeżeli chcesz zmienic typ resursu wpisz 'zmien'")
-                    koniec=input()
-                    if koniec=="zmien":
-                        czyprzerwac=1
-                        break
-                    elif koniec=="":
-                        czyprzerwac=2
-                        break
-                    else:
-                        czyprzerwac=0
-                        pass
-                if czyprzerwac==1:
-                    break
-                elif czyprzerwac==2:
-                    pass"""
 #pdf i excel dziala dziala zamiana dokumentow teraz tylko wymyslic jak nie trzymac wzorow na komputerze tylko jakos 
 #online czy w chmurze nwm
 #zrob zamiane na apk moze
 #moze jakies gui
 #-------------------------------------------------------------------------------------------------
+
 cos=True
+#tworze folder z wynikami programu na pulpicie
 try:
     os.mkdir(sc)
 except FileExistsError:
     pass
+#wybor miedzy pdfem a xlsx
 while cos:
     f=input("Dokumenty mają mieć format pdf czy xlsx: ").lower()
     if f=="pdf" or f=="xlsx":
@@ -59,6 +43,7 @@ if f=="pdf":
         wybor=input().lower()
         while 1:
             if wybor=="wozek":
+                #laduje wzor z pliku xlsx
                 wb=load_workbook(os.path.join(sciezka+"\Resurswzor.xlsx"))
                 ws=wb.active
                 licznik1+=1
@@ -110,6 +95,7 @@ if f=="pdf":
                 except IndexError:
                     print("Została wpisana zła wartość redukująca")
                 razem=typ.upper()+" "+produ.capitalize()
+                #wpisuje dane do podanych komorek w pliku xlsx
                 ws["d7"]=ekspl.capitalize()
                 ws["d9"]=nrewi.upper()
                 ws["l8"]=razem
@@ -120,6 +106,7 @@ if f=="pdf":
                 ws["i21"]=wspolczynnik
                 ws["c21"]=wartoscgran
                 ws["l21"]=wartoscredu
+                #tworze plik xlsx ktory posluzy do stworzenia pdfa
                 wb.save(os.path.join(f'{sc}\{testowy}'))
                 excel = client.Dispatch("Excel.Application")
                 excel.Visible = False
