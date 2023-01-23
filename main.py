@@ -16,10 +16,7 @@ licznik4=0
 licznik5=0
 p=11
 czyprzerwac=0
-#pdf i excel dziala dziala zamiana dokumentow teraz tylko wymyslic jak nie trzymac wzorow na komputerze tylko jakos 
-#online czy w chmurze nwm
-#zrob zamiane na apk moze
-#moze jakies gui
+
 #-------------------------------------------------------------------------------------------------
 
 cos=True
