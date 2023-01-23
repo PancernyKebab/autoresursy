@@ -115,7 +115,7 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.1)
+                time.sleep(0.2)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
@@ -177,7 +177,7 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.1)
+                time.sleep(0.2)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
@@ -239,7 +239,7 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.1)
+                time.sleep(0.2)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
@@ -301,7 +301,7 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.1)
+                time.sleep(0.2)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
@@ -366,7 +366,7 @@ if f=="pdf":
                 work_sheets = sheets.Worksheets[0]
                 work_sheets.ExportAsFixedFormat(0, f'{sc}\{nazwadopdf}')
                 excel.quit()
-                time.sleep(0.1)
+                time.sleep(0.2)
                 try:
                     #usuwa plik xlsx ktory byl potrzebny do stworzenia pdfa
                     os.remove(os.path.join(f'{sc}\{testowy}'))
