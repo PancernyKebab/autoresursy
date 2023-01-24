@@ -343,7 +343,8 @@ if f=="pdf":
                     ws[f'f{p}']=czesc
                 uwagi=input("Uwagi i zalecenia: ")
                 wyko=input("Wykonał: ")
-                czas=input("Czas pracy: ")
+                czas=input("Początek pracy (np. 15:00): ")
+                czas2=input("koniec pracy: ")
                 dojazd=input("Dojazd: ")
                 ws["c1"]=numer
                 ws["b4"]=nazwafirmy.capitalize()
@@ -353,7 +354,8 @@ if f=="pdf":
                 ws["a12"]=opis
                 ws["a36"]=uwagi
                 ws["a42"]=wyko
-                ws["d42"]=czas
+                ws["d43"]=czas
+                ws["f43"]=czas2
                 ws["d45"]=dojazd
                 wb.save(os.path.join(f'{sc}\{testowy}'))
                 excel = client.Dispatch("Excel.Application")
@@ -639,7 +641,8 @@ else:
                     ws[f'f{p}']=czesc
                 uwagi=input("Uwagi i zalecenia: ")
                 wyko=input("Wykonał: ")
-                czas=input("Czas pracy: ")
+                czas=input("Początek pracy (np. 15:00): ")
+                czas2=input("koniec pracy: ")
                 dojazd=input("Dojazd: ")
                 ws["c1"]=numer
                 ws["b4"]=nazwafirmy.capitalize()
@@ -649,7 +652,8 @@ else:
                 ws["a12"]=opis
                 ws["a36"]=uwagi
                 ws["a42"]=wyko
-                ws["d42"]=czas
+                ws["d43"]=czas
+                ws["f43"]=czas2
                 ws["d45"]=dojazd
                 wb.save(os.path.join(sc+"\\"+nazwapliku))
                 while 1:
