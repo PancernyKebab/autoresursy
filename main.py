@@ -2,6 +2,7 @@ import os
 from openpyxl import Workbook, load_workbook
 from win32com import client
 import time
+#potrzeba jeszcze zainstalować Pillow żeby obrazy sie zapisały
 #----------------------------------------------------
 testowy="plikxlsxdousuniecia.xlsx"
 testowybezrozsz="plikxlsxdousuniecia"
